@@ -5,6 +5,12 @@
       <li><router-link to="/about">About-normal</router-link></li>
       <li><router-link :to="{ name: 'About' }">About-bind</router-link></li>
       <li><router-link to="/blog">Blog</router-link></li>
+      <ul>
+        <li><h2>User Profiles</h2></li>
+        <li v-for="(id, index) in userIds" :key="index">
+          <router-link :to="{ name: 'ViewProfile', params: { user_id: id } }">{{ id }}</router-link>
+        </li>
+      </ul>
     </ul>
   </nav>
 </template>
@@ -13,7 +19,9 @@
 export default {
   name: "Navbar",
   data() {
-    return {};
+    return {
+      userIds: ['1','2','3','4']
+    };
   }
 };
 </script>
@@ -26,7 +34,7 @@ nav {
 }
 nav ul {
   display: flex;
-  width: 80%;
+  /* width: 80%;   */
   list-style-type: none;
   flex-direction: row;
   justify-content: space-between;
@@ -35,7 +43,11 @@ nav ul {
 }
 nav ul li {
   justify-content: space-around;
-
+  margin: 0 5px;
+}
+nav ul ul {
+  display: flex;
+  flex-direction: column;
 }
 </style>
 
